@@ -1,0 +1,46 @@
+@font-face {
+	font-family: workSans;
+	src: url('./Font/static/WorkSans-Medium.ttf');
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: workSans, sans-serif;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background: #fff;
+}
+
+#name {
+	position: absolute;
+	top: 10%;
+	z-index: 100;
+}
+
+img {
+	position: absolute;
+	bottom: 0;
+	transform: rotateY(-90deg);
+	animation: animate 1s linear infinite;
+	height: 75vh;
+}
+
+@keyframes animate {
+	0% {
+		transform: rotateY(-90deg);
+	}
+	30%,
+	70% {
+		transform: rotateY(0deg);
+	}
+	100% {
+		transform: rotateY(90deg);
+	}
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Hololive Photo Transition</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<h1 id="name"></h1>
+		<img id="main-image" src="" />
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				const photoCollection = [
+					// 0th Gen
+					'Tokino_Sora',
+					'Roboco_San',
+					'Sakura_Miko',
+					'Hoshimachi_Suisei',
+					// 1st Gen
+					'Shirakami_Fubuki',
+					'Natsuiro_Matsuri',
+					'Yozora_Mel',
+					'Akai_Haato',
+					'Aki_Rosenthal',
+					// 2nd Gen
+					'Minato_Aqua',
+					'Yuzuki_Choco',
+					'Nakiri_Ayame',
+					'Murasaki_Shion',
+					'Oozora_Subaru',
+					// Gamers
+					'Ookami_Mio',
+					'Nekomata_Okayu',
+					'Inugami_Korone',
+					// 3rd Gen
+					'Houshou_Marine',
+					'Shiranui_Flare',
+					'Shirogane_Noel',
+					'Uruha_Rushia',
+					'Usada_Pekora',
+					// 4th Gen
+					'Amane_Kanata',
+					'Kiryu_Coco',
+					'Tsunomaki_Watame',
+					'Tokoyami_Towa',
+					'Himemori_Luna',
+					// 5th Gen
+					'Yukihana_Lamy',
+					'Momosuzu_Nene',
+					'Shishiro_Botan',
+					'Mano_Aloe',
+					'Omaru_Polka',
+				];
+
+				const nameDOM = document.querySelector('#name');
+				const imgDOM = document.querySelector('#main-image');
+
+				let counter = 0;
+				let name_counter = -1;
+				imgDOM.onanimationiteration = () => {
+					imgDOM.src = `./Image/${photoCollection[counter]}.png`;
+					counter = (counter + 1) % photoCollection.length;
+					name_counter = (name_counter + 1) % photoCollection.length;
+					nameDOM.innerText = photoCollection[name_counter]
+						.split('_')
+						.join(' ');
+				};
+			});
+		</script>
+	</body>
+</html>
