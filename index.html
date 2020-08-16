@@ -59,32 +59,27 @@
 				photoCollection.forEach((photo, index) => {
 					const img = document.createElement('img');
 					img.src = `./Image/${photo}.png`;
-					// img.classList.add('show');
-					img.dataset.id = index;
 					divDOM.appendChild(img);
 				});
+
+				const imagesDOM = Array.from(document.querySelectorAll('img'));
+				console.log(imagesDOM);
 
 				let counter = 1;
 				let prev = counter - 1;
 				// Initialize
 				nameDOM.innerText = photoCollection[prev].split('_').join(' ');
-				document.querySelector(`img[data-id="${prev}"]`).classList.add('show');
+				imagesDOM[prev].classList.add('show');
 
 				// Execute after each iteration end
 				divDOM.onanimationiteration = () => {
-					// imgDOM.src = `./Image/${photoCollection[counter]}.png`;
-
 					// Show current name
 					nameDOM.innerText = photoCollection[counter].split('_').join(' ');
 
 					// Show current img
-					document
-						.querySelector(`img[data-id="${counter}"]`)
-						.classList.add('show');
+					imagesDOM[counter].classList.toggle('show');
 					// Hide previous img
-					document
-						.querySelector(`img[data-id="${prev}"]`)
-						.classList.remove('show');
+					imagesDOM[prev].classList.toggle('show');
 
 					// Set previous = counter
 					prev = counter;
