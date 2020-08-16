@@ -24,12 +24,22 @@ body {
 	z-index: 100;
 }
 
-img {
+#main-image {
+	display: block;
 	position: absolute;
 	bottom: 0;
 	transform: rotateY(-90deg);
 	animation: animate 1s linear infinite;
 	height: 75vh;
+}
+
+#main-image img {
+	display: none;
+	height: 100%;
+}
+
+.show {
+	display: block !important;
 }
 
 @keyframes animate {

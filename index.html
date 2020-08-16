@@ -8,7 +8,7 @@
 	</head>
 	<body>
 		<h1 id="name"></h1>
-		<img id="main-image" src="" />
+		<div id="main-image"></div>
 		<script>
 			document.addEventListener('DOMContentLoaded', () => {
 				const photoCollection = [
@@ -54,17 +54,42 @@
 				];
 
 				const nameDOM = document.querySelector('#name');
-				const imgDOM = document.querySelector('#main-image');
+				const divDOM = document.querySelector('#main-image');
 
-				let counter = 0;
-				let name_counter = -1;
-				imgDOM.onanimationiteration = () => {
-					imgDOM.src = `./Image/${photoCollection[counter]}.png`;
+				photoCollection.forEach((photo, index) => {
+					const img = document.createElement('img');
+					img.src = `./Image/${photo}.png`;
+					// img.classList.add('show');
+					img.dataset.id = index;
+					divDOM.appendChild(img);
+				});
+
+				let counter = 1;
+				let prev = counter - 1;
+				// Initialize
+				nameDOM.innerText = photoCollection[prev].split('_').join(' ');
+				document.querySelector(`img[data-id="${prev}"]`).classList.add('show');
+
+				// Execute after each iteration end
+				divDOM.onanimationiteration = () => {
+					// imgDOM.src = `./Image/${photoCollection[counter]}.png`;
+
+					// Show current name
+					nameDOM.innerText = photoCollection[counter].split('_').join(' ');
+
+					// Show current img
+					document
+						.querySelector(`img[data-id="${counter}"]`)
+						.classList.add('show');
+					// Hide previous img
+					document
+						.querySelector(`img[data-id="${prev}"]`)
+						.classList.remove('show');
+
+					// Set previous = counter
+					prev = counter;
+					// Increment counter
 					counter = (counter + 1) % photoCollection.length;
-					name_counter = (name_counter + 1) % photoCollection.length;
-					nameDOM.innerText = photoCollection[name_counter]
-						.split('_')
-						.join(' ');
 				};
 			});
 		</script>
